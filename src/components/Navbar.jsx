@@ -28,28 +28,32 @@ function Navbar() {
   const handler = () => {
     router.push("/login");
   };
-  return (
-    <nav className="bg-emerald-400 px-6 py-4 flex justify-between items-center">
-      <h6>
-        Next <span className="text-red-900">Hero</span>
-      </h6>
-      <ul className="flex space-x-4">
-        {links?.map((link) => (
-          <li key={link.title}>
-            <Link
-              className={`${pathName === link.path ? "text-purple-500" : ""}`}
-              href={link.path}
-            >
-              {link.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <button onClick={handler} className="bg-white text-cyan-400 p-2">
-        Login
-      </button>
-    </nav>
-  );
+  if (pathName.includes("dashboard")) {
+    <div className="bg-green-400 p-6">Dashboard Layout</div>;
+  } else {
+    return (
+      <nav className="bg-emerald-400 px-6 py-4 flex justify-between items-center">
+        <h6>
+          Next <span className="text-red-900">Hero</span>
+        </h6>
+        <ul className="flex space-x-4">
+          {links?.map((link) => (
+            <li key={link.title}>
+              <Link
+                className={`${pathName === link.path ? "text-purple-500" : ""}`}
+                href={link.path}
+              >
+                {link.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <button onClick={handler} className="bg-white text-cyan-400 p-2">
+          Login
+        </button>
+      </nav>
+    );
+  }
 }
 
 export default Navbar;
